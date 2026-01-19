@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Pomodoro Timer</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍅 Pomodoro Timer</h1>
+        <p class="subtitle">Stay focused and productive</p>
+
+        <div class="mode-selector">
+            <button class="mode-btn active" onclick="setMode('pomodoro')">Pomodoro</button>
+            <button class="mode-btn" onclick="setMode('shortBreak')">Short Break</button>
+            <button class="mode-btn" onclick="setMode('longBreak')">Long Break</button>
+        </div>
+
+        <div class="timer-container">
+            <svg class="progress-ring" width="300" height="300">
+                <circle
+                    class="progress-ring-bg"
+                    stroke="#f0f0f0"
+                    stroke-width="12"
+                    fill="transparent"
+                    r="140"
+                    cx="150"
+                    cy="150"
+                />
+                <circle
+                    class="progress-ring-circle"
+                    stroke="#667eea"
+                    stroke-width="12"
+                    fill="transparent"
+                    r="140"
+                    cx="150"
+                    cy="150"
+                    id="progressCircle"
+                />
+            </svg>
+            <div class="timer-display">
+                <div class="time" id="timeDisplay">25:00</div>
+                <div class="session-label" id="sessionLabel">Focus Time</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn start-btn" id="startBtn" onclick="startTimer()">
+                ▶️ Start
+            </button>
+            <button class="control-btn pause-btn" id="pauseBtn" onclick="pauseTimer()" style="display: none;">
+                ⏸️ Pause
+            </button>
+            <button class="control-btn reset-btn" onclick="resetTimer()">
+                🔄 Reset
+            </button>
+        </div>
+
+        <div class="stats">
+            <div class="stats-title">📊 Today's Stats</div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="pomodorosCompleted">0</div>
+                    <div class="stat-label">Pomodoros</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="totalMinutes">0</div>
+                    <div class="stat-label">Minutes</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings">
+            <div class="settings-title" onclick="toggleSettings()">
+                ⚙️ Settings
+                <span id="settingsArrow">▼</span>
+            </div>
+            <div class="settings-content" id="settingsContent">
+                <div class="setting-item">
+                    <span class="setting-label">Pomodoro (min)</span>
+                    <input type="number" class="setting-input" id="pomodoroDuration" value="25" min="1" max="60" onchange="saveSettings()">
+                </div>
+                <div class="setting-item">
+                    <span class="setting-label">Short Break (min)</span>
+                    <input type="number" class="setting-input" id="shortBreakDuration" value="5" min="1" max="30" onchange="saveSettings()">
+                </div>
+                <div class="setting-item">
+                    <span class="setting-label">Long Break (min)</span>
+                    <input type="number" class="setting-input" id="longBreakDuration" value="15" min="1" max="60" onchange="saveSettings()">
+                </div>
+                <div class="setting-item">
+                    <span class="setting-label">Auto-start Breaks</span>
+                    <div class="toggle-switch" id="autoStartToggle" onclick="toggleAutoStart()">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+   <script src="script.js"></script>    
+</body>
+</html>
